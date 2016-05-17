@@ -14,9 +14,12 @@
     <link href='https://fonts.googleapis.com/css?family=Paytone+One' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
     <!-- Bootswatch -->
     <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+    <link href="http://datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="http://datatables.net/download/build/nightly/jquery.dataTables.js"></script>
+
     <title>Social Deeds</title>
   
 </head>
@@ -47,8 +50,8 @@
   </div>
 </nav>
 
-<div class="title" align="center">
-  <h1>THIS IS THE DEEDS PAGE</h1>
+<div class="page-header">
+    <h1>Let your Deeds Be Like Rain<small>  Drop a little everywhere.</small></h1>
 </div>
 
 <div id="loginSection" class="modal fade" role="dialog">
@@ -87,15 +90,222 @@
         </div>
     </div>
 </div>
+<!--This section is manually generated collapsible columns-->
+
+<div class="panel-group" id="accordion" role="tablist">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <p class="title">Title: Feed the Hungry</p><p class="value">&nbsp;Deed Points: 150</p><p class="slots">&nbsp;Slots: 5</p>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <p> Join us for a day of giving back at the local food pantry where we will be serving hot soup etc...</p>
+
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <p class="title">Title: Environmental Cleanup</p><p class="value">&nbsp;Deed Points: 250</p><p class="slots">&nbsp;Slots: 15</p>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <p> We will be at the local park after this weekend's concert to help cleanup and bring the park back to its pristine state.</p>
+
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <p class="title">Title: Clothing Drive</p><p class="value">&nbsp;Deed Points: 200</p><p class="slots">&nbsp;Slots: 10</p>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <p> Join us the public library where we will be collecting new and slightly used clothes for the needy.</p>
+
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <p class="title">Title: Animal Shelter Chores</p><p class="value">&nbsp;Deed Points: 350</p><p class="slots">&nbsp;Slots: 8</p>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <p> The animal shelter is severely underfunded and needs our help to rebuild facilities and take care of some helpless animals.</p>
+
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div>
+    </div>
+    <!--This section closes the manually generated collapsible columns-->
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <table id="deeds" class="display" width="100%">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Deed Points</th>
+                <th>Slots</th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
 </body>
 <script type=text/javascript>
-  $("#loginButton").click(function() {
-  
-    $("#loginSection").modal('show');
-});
-$("#signUp").click(function(){
-    $('#loginSection').modal('hide');
-    $('#signUp-form').modal('show');
-})
+// login
+    $("#loginButton").click(function() {
+
+        $("#loginSection").modal('show');
+    });
+// sign up
+    $("#signUp").click(function(){
+        $('#loginSection').modal('hide');
+        $('#signUp-form').modal('show');
+    });
+// jQuery AJAX call to database. Links to a  Sequelize implementation for retrieving results.
+
+
+    var currentURL = window.location.origin;
+    $.get(currentURL + '/deeds', function(result){
+        console.log(result);
+        var table = $('#deeds').DataTable({
+              data:result
+          });
+      } );
+
+
+  $('add_deed').on('click', function(){
+      var newDeed =
+      {
+          title: $("#deed_title").val().trim(),
+          location: $("#deed_location").val().trim(),
+          date_start: $("#deed_date_start").val().trim(),
+          date_end: $("#deed_date_end").val().trim(),
+          description: $("#deed_description").val().trim(),
+          image: $("#deed_image").val().trim(),
+          slots: $("#deed_slots").val().trim(),
+          sponsor: $("#deed_sponsor").val().trim(),
+          sponsor_img: $("#deed_sponsor_image").val().trim(),
+          deed_coin_val: $("#deed_coins").val().trim(),
+      }
+      $.post(currentURL + "api/deeds/new", newDeed)
+          .done(function(data){
+              console.log(data);
+              alert("Adding your event to the List of Opportunities...");
+          })
+      $("#deed_title").val("");
+      $("#deed_location").val("");
+      $("#deed_date_start").val("");
+      $("#deed_date_end").val("");
+      $("#deed_description").val("");
+      $("#deed_image").val("");
+      $("#deed_slots").val("");
+      $("#deed_sponsor").val("");
+      $("#deed_sponsor_image").val("");
+      $("#deed_coins").val("");
+
+      return false;
+
+  });
+
+
+////Data Table Functionality, ie. collapsible rows
+//    var table = $('#deeds').DataTable({
+//        "columns": [
+//            {
+//                "createdCell": function (cell, data, row) {
+//                    if (row.children) {
+//                        $(cell).addClass('details-control');
+//                    }
+//                }
+//            },
+//            { "data": "Title" },
+//            { "data": "Deed Points" },
+//            { "data": "Slots" },
+//            {
+//                "data": null,
+//                "visible": false,
+//                "render": function ( data, type, row ) {
+//                    str = '';
+//                    $.ajax({
+//                        url: "mysql://iss7a2c2lcow0icm:sylgrzdf9u529sia@l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zbilm8sq8aqxtp9j",
+//                        data: "",
+//
+//                        datatype: 'json',
+//                        success: function(data){
+//                            for(i=0; i<data.length; i++){
+//
+//                            }
+//                        }
+//                    });
+//                    return str;
+//                }
+//            }
+//        ]
+//    });
+  $('#deeds tbody').on('click', 'td.details-control', function () {
+
+      var tr = $(this).closest('tr');
+      var row = table.row(tr);
+
+      if (row.child.isShown()) {
+          // This row is already open - close it
+          row.child.hide();
+          tr.removeClass('shown');
+      }
+      else {
+          // Open this row
+          row.child(format(row.data())).show();
+          tr.addClass('shown');
+      }
+  });
+
+  $( this ).closest( 'tr' ).nextUntil('.even, .odd').filter('.grand-child-row').hide();
+
+
+  // Add event listener for opening and closing child details
+  $('#deeds tbody').on('click', 'td.child-details-control', function () {
+      $(this).closest( 'tr' ).toggleClass("child-shown");
+      $(this).closest( 'tr' ).nextUntil('.child-row, .even, .odd').toggle();
+  });
+
 </script>
 </html>

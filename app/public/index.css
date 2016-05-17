@@ -29,3 +29,6 @@ body{
 #focusedInput,#other1{
 	background-color:#e8edf3;
 }
+p{
+    display: inline-block;
+}
