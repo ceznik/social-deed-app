@@ -301,11 +301,12 @@
                 ]
             });
 
-        $('#deeds tbody').on('click', 'td.details-control', function () {
-
+        $('#deeds tbody').on('click', 'tr', function () {
+            var table = $('#deeds').DataTable();
             var tr = $(this).closest('tr');
             var row = table.row(tr);
-
+            console.log(row.data().title);
+           //alert("you clicked the " + row.data().title + " row");
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
@@ -313,7 +314,7 @@
             }
             else {
                 // Open this row
-                row.child(format(row.data())).show();
+                row.child(row.data()).show();
                 tr.addClass('shown');
             }
         });
@@ -321,12 +322,12 @@
         $( this ).closest( 'tr' ).nextUntil('.even, .odd').filter('.grand-child-row').hide();
 
 
-        // Add event listener for opening and closing child details
-//        $('#deeds tbody').on('click', 'td.child-details-control', function () {
-//            alert("listener for tbody click");
-//            $(this).closest( 'tr' ).toggleClass("child-shown");
-//            $(this).closest( 'tr' ).nextUntil('.child-row, .even, .odd').toggle();
-//        });
+         //dd event listener for opening and closing child details
+        $('#deeds tbody').on('click', 'td.child-details-control', function () {
+            alert("listener for tbody click");
+            $(this).closest( 'tr' ).toggleClass("child-shown");
+            $(this).closest( 'tr' ).nextUntil('.child-row, .even, .odd').toggle();
+        });
 });
 
 
