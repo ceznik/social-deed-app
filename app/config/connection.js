@@ -12,10 +12,17 @@ var source = {
         password: "sylgrzdf9u529sia",
         database: "zbilm8sq8aqxtp9j"
 
+    },
+    local: {
+        port: 3306,
+        host: 'localhost',
+        user: 'nodeuser',
+        password: 'test123',
+        database: 'social_deeds_test'
     }
 };
 
-var selectedSource = source.jawsDB;
+var selectedSource = source.local;
 
 var sequelize = new Sequelize(selectedSource.database, selectedSource.user, selectedSource.password, {
     host: selectedSource.host,

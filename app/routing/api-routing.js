@@ -13,7 +13,7 @@ module.exports = function(app) {
         Deeds.findAll()
             .then(function (result) {
                 console.log("find All Results...." + result);
-                res.json(Deeds);
+                res.json(result);
             });
 
 
