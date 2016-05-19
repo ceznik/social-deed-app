@@ -305,6 +305,7 @@
             var table = $('#deeds').DataTable();
             var tr = $(this).closest('tr');
             var row = table.row(tr);
+            var detailWell = '<div class="well well-lg">details well</div>';
             console.log(row.data().title);
            //alert("you clicked the " + row.data().title + " row");
             if (row.child.isShown()) {
@@ -314,11 +315,28 @@
             }
             else {
                 // Open this row
-                row.child(row.data()).show();
+                //row.child(row.data()).show();
+                row.child(format(row.data())).show();
                 tr.addClass('shown');
             }
         });
-
+        function format ( d ) {
+            // `d` is the original data object for the row
+            return '<div class="well well-lg">'+
+                    '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                    '<tr>'+
+                    '<td>Description:</td>'+
+                    '<td>'+d.description+'</td>'+
+                    '<td>Deed Point Value</td>'+
+                    '<td>'+d.deed_coin_val+'</td>'+
+                    '</tr>'+
+                    '<tr>'+
+                    '<td>Sponsors:</td>'+
+                    '<td>'+ d.sponsor +'</td>'+
+                    '</tr>'+
+                    '</table>'+
+                    '</div>';
+        }
         $( this ).closest( 'tr' ).nextUntil('.even, .odd').filter('.grand-child-row').hide();
 
 
