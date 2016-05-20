@@ -24,7 +24,7 @@ var Deed = sequelize.define("deeds", {
         type:Sequelize.DATE
     },
     description:{
-        type:Sequelize.STRING
+        type:Sequelize.TEXT
     },
     image:{
         type:Sequelize.STRING
@@ -40,6 +40,12 @@ var Deed = sequelize.define("deeds", {
     },
     deed_coin_val:{
         type:Sequelize.INTEGER
+    },
+    updatedAt:{
+        type:Sequelize.DATE
+    },
+    createdAt:{
+        type:Sequelize.DATE
     }
 });
 
