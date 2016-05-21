@@ -258,13 +258,14 @@
                     '<td>'+'Start Date'+'</td>'+
                     '<td>'+moment(d.date_start).format('LL')+'</td>' +
                     '</tr>'+
-                    '<tr>' +
+                    '<tr>'+
                     '<td>'+'End Date'+'</td>'+
                     '<td>'+moment(d.date_end).format('LL')+'</td>' +
                     '</tr>'+
                     '<tr>'+
                     '<td>Sponsors:</td>'+
                     '<td>'+ d.sponsor +'</td>'+
+                    '<td>' + '<img width="100px" height="100px" src="'+ d.sponsor_img + '">' + '</td>'+
                     '</tr>'+
                     '</table>'+
                     '</div>';
