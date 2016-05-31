@@ -26,16 +26,16 @@ module.exports = function(app) {
 
         Deed.create({
             //deed creation details
-            title: deed.name,
+            title: deed.title,
             location: deed.location,
             date_start: deed.date_start,
             date_end: deed.date_end,
             description: deed.description,
-            image: deed.image_url,
+            image: deed.image,
             slots: deeds.slots,
             sponsor: deeds.sponsor,
             sponsor_img: deeds.sponsor_image,
-            deed_coin_val: deeds.deed_coins
+            deed_coin_val: deeds.deed_coin_val
         });
     })
 };
